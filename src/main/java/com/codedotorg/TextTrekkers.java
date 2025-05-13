@@ -126,8 +126,38 @@ public class TextTrekkers {
      * @return A string describing the result of the user's command.
      */
     public String processCommand(String input) {
-        
-        return "";
+        input = input.toLowerCase(); // Ensure case-insensitive comparison
+
+    switch (input) {
+        case "pick up key":
+            if (!hasKey) {
+                hasKey = true;
+                return "You picked up the key.";
+            } else {
+                return "You already have the key.";
+            }
+
+        case "use key":
+            if (hasKey) {
+                doorLocked = false;
+                return "You used the key to unlock the door.";
+            } else {
+                return "You don't have a key to use.";
+            }
+
+        case "open door":
+            if (!doorLocked) {
+                return "You opened the door and won the game!";
+            } else {
+                return "The door is locked. You need to unlock it first.";
+            }
+
+        case "go north":
+            return "You head north and see a locked door.";
+
+        default:
+            return "I don't understand that command.";
+    }
     }
 
     /**
